@@ -13,10 +13,7 @@ Creating a jango api for fun
 
 # Student List
 ```
-URL /students/
-
-Allow: GET, POST, HEAD, OPTIONS
-Content-Type: application/json
+ENDPOINT /students/
 ```
 # GET
 ```json
@@ -58,7 +55,7 @@ Content-Type: application/json
 
 # Course List
 ```
-URL /courses/
+ENDPOINT /courses/
 
 level:
 ('B', 'Basic')
@@ -103,4 +100,41 @@ level:
 }
 ```
 # DELETE
-->`/students/<id>`
+->`/courses/<id>`
+
+# Registration List
+```
+ENDPOINT /registrations/
+```
+# GET
+```json
+[
+    {
+        "id": 1,
+        "period": "M",
+        "student": 1,
+        "course": 1
+    }
+]
+```
+# PUT
+```json
+{
+    "id": 1,
+    "period": "M",
+    "student": 1,
+    "course": 1
+}
+```
+
+# PATCH
+->`/registrations/<id>`
+```json
+{
+    "period": "M",
+    "student": 1,
+    "course": 1
+}
+```
+# DELETE
+->`/registrations/<id>`

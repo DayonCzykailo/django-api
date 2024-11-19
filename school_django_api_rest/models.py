@@ -23,3 +23,18 @@ class Course(models.Model):
 
     def __str__(self) -> str:
         return self.code
+    
+class Registration(models.Model):
+    PERIODS = [
+        ('M', 'Morning'),
+        ('A', 'Afternoon'),
+        ('N', 'Night'),
+        ('D', 'Dawn')
+    ]
+
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, blank=False, null=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, blank=False, null=False)
+    period = models.CharField(max_length=1, blank=False, null=False, choices=PERIODS, default='M')
+
+    def __str__(self) -> str:
+        return f'{self.student.name} - {self.course.code}'
