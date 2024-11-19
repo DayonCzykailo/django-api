@@ -1,1 +1,3 @@
-clear && python manage.py runserver
+cls
+
+python manage.py runserver
