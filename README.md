@@ -14,11 +14,11 @@ Creating a jango api for fun
 ```
 Student List
 
-GET `/students/`
+GET /students/
 
-HTTP `200 OK`
-Allow: `GET, POST, HEAD, OPTIONS`
-Content-Type: `application/json`
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
 ```
 
 ```json
