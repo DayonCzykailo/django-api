@@ -1,34 +1,42 @@
 from django.http import JsonResponse 
-from school_django_api_rest.serializers import StudentSerializer, CourseSerializer, RegistrationSerializer
+from school_django_api_rest.serializers import StudentSerializer, CourseSerializer, RegistrationSerializer, ListRegistrationStudentSerializer, ListRegistrationCourseSerializer
 from school_django_api_rest.models import Student, Course, Registration
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 class StudentViewSet(viewsets.ModelViewSet):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAdminUser] # Only admin users can acess it
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
 class CourseViewSet(viewsets.ModelViewSet):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
 class RegistrationViewSet(viewsets.ModelViewSet):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
 
-    # def create(self, request, *args, **kwargs):
-    #     data = request.data
-    #     student_id = data.get('student')
-    #     course_id = data.get('course')
-    #     period = data.get('period')
+class ListRegistrationStudentViewSet(generics.ListAPIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListRegistrationStudentSerializer
 
-    #     student = Student.objects.get(id=student_id)
-    #     course = Course.objects.get(id=course_id)
+    def get_queryset(self):
+        queryset = Registration.objects.filter(student_id=self.kwargs['pk']) # get the id from the url
+        return queryset
+    
+class ListRegistrationCourseViewSet(generics.ListAPIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListRegistrationCourseSerializer
 
-    #     registration = Registration.objects.create(
-    #         student=student,
-    #         course=course,
-    #         period=period
-    #     )
-
-    #     serializer = RegistrationSerializer(registration)
-    #     return JsonResponse(serializer.data)
+    def get_queryset(self):
+        queryset = Registration.objects.filter(course_id=self.kwargs['pk'])
+        return queryset
