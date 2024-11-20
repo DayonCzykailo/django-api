@@ -1,5 +1,5 @@
 # django-api
-Creating a jango api for fun ...
+Creating a Django api for fun ...
 
 This Django API Rest have basic authorization system, all methods HTTP {PUT, POST, GET, DELETE, PATCH}, routes customized, POO and others.
 
