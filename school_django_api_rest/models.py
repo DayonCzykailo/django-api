@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.validators import MinLengthValidator # https://docs.djangoproject.com/en/5.0/ref/validators/
 
 class Student(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50, blank=False)
-    cpf = models.CharField(max_length=11)
+    cpf = models.CharField(max_length=11, unique=True)
     birth_date = models.DateField()
     phone = models.CharField(max_length=14)
 
@@ -17,7 +18,7 @@ class Course(models.Model):
         ('A', 'Advanced')
     ]
 
-    code = models.CharField(max_length=10)
+    code = models.CharField(max_length=10, unique=True, validators=[MinLengthValidator(limit_value=3)])
     description = models.CharField(max_length=100, blank=False)
     level = models.CharField(max_length=1, blank=False, null=False, choices=LEVELS, default='B')
 

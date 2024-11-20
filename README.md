@@ -1,11 +1,17 @@
 # django-api
 Creating a jango api for fun ...
 
-This Django API Rest have basic authorization sistem, all methods HTTP {PUT, POST, GET, DELETE, PATCH}, routes customized, POO and others.
+This Django API Rest have basic authorization system, all methods HTTP {PUT, POST, GET, DELETE, PATCH}, routes customized, POO and others.
 
 i made an API for a simple school, so its have Students, Course and Registration.
-and i made some .bat file to simplify the development. 
+and i made some .bat file to simplify the development and put some validations, paginations, ordenations, filters and versioning.
 
+Using:
+- validate-docbr
+- django
+- django-framework
+- requests
+- django-filter
 
 # Django flowchart
 ![alt text](https://cdn1.gnarususercontent.com.br/1/103811/6bd3c17a-2dc3-4db2-9fcd-a0b2447ade89.png)
